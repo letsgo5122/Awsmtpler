@@ -1,0 +1,116 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://gui/LeftCtrl.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/pad.png" type="Texture" id=2]
+[ext_resource path="res://gui/SendChat.gd" type="Script" id=3]
+[ext_resource path="res://gui/AttBt.gd" type="Script" id=4]
+[ext_resource path="res://gui/BombBt.gd" type="Script" id=5]
+
+[node name="Btm_GUI" type="MarginContainer"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = -202.0
+margin_right = -20.0
+margin_bottom = -52.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HB" type="HBoxContainer" parent="."]
+margin_right = 760.0
+margin_bottom = 150.0
+
+[node name="MC" type="MarginContainer" parent="HB"]
+margin_right = 200.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 200, 150 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="joystick" parent="HB/MC" instance=ExtResource( 1 )]
+position = Vector2( 90, 90 )
+scale = Vector2( 2, 2 )
+
+[node name="VB" type="VBoxContainer" parent="HB"]
+margin_left = 204.0
+margin_right = 552.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HB/VB"]
+margin_right = 348.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 200, 100 )
+text = "Hello
+"
+
+[node name="HB" type="HBoxContainer" parent="HB/VB"]
+margin_top = 104.0
+margin_right = 348.0
+margin_bottom = 140.0
+
+[node name="LineEdit" type="LineEdit" parent="HB/VB/HB"]
+margin_right = 200.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 200, 36 )
+
+[node name="SendChat" type="Button" parent="HB/VB/HB"]
+margin_left = 204.0
+margin_right = 254.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 50, 36 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AttMarg" type="MarginContainer" parent="HB"]
+margin_left = 556.0
+margin_right = 656.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="AttBt" type="TouchScreenButton" parent="HB/AttMarg"]
+position = Vector2( 0, 50 )
+normal = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="HB/AttMarg/AttBt"]
+margin_left = 11.0
+margin_top = 24.0
+margin_right = 51.0
+margin_bottom = 38.0
+text = "Attact
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BombMarg" type="MarginContainer" parent="HB"]
+margin_left = 660.0
+margin_right = 760.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="BombBt" type="TouchScreenButton" parent="HB/BombMarg"]
+position = Vector2( -4, 50 )
+normal = ExtResource( 2 )
+script = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="HB/BombMarg/BombBt"]
+margin_left = 12.0
+margin_top = 22.0
+margin_right = 52.0
+margin_bottom = 36.0
+text = "Bomb
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="HB/AttMarg/AttBt" to="HB/AttMarg/AttBt" method="_on_AttBt_pressed"]
+[connection signal="released" from="HB/AttMarg/AttBt" to="HB/AttMarg/AttBt" method="_on_AttBt_released"]
+[connection signal="pressed" from="HB/BombMarg/BombBt" to="HB/BombMarg/BombBt" method="_on_BombBt_pressed"]
+[connection signal="released" from="HB/BombMarg/BombBt" to="HB/BombMarg/BombBt" method="_on_BombBt_released"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Items.gd" type="Script" id=1]
+
+[node name="ItemsCtl" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Items" type="ItemList" parent="."]
+margin_left = 1.0
+margin_top = -1.0
+margin_right = 452.0
+margin_bottom = 354.0
+max_columns = 5
+icon_mode = 0
+fixed_icon_size = Vector2( 64, 64 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

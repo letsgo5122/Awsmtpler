@@ -1,0 +1,114 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://images/icons/brickfloor.png" type="Texture" id=1]
+[ext_resource path="res://weapon/bomb.gd" type="Script" id=2]
+[ext_resource path="res://images/particles/explosion.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 70.7704
+
+[sub_resource type="Animation" id=2]
+resource_name = "anim"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.7, 1, 1.2, 1.4, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 8, 8, 8, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 8, 8, 8, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 8, 8, 8, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 8, 8, 8, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 8, 8, 8, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2.7, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "explod"
+}, {
+"args": [  ],
+"method": "done"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("explosion1:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("explosion2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 50, 1, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+angular_velocity = -132.83
+angular_velocity_random = 0.55
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = -36.62
+
+[node name="bomb" type="Area2D" groups=[
+"weapon",
+]]
+collision_mask = 18
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 145.906, 2.421, 45, 45 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+autoplay = "anim"
+anims/anim = SubResource( 2 )
+
+[node name="explosion1" type="Particles2D" parent="."]
+rotation = 1.5708
+emitting = false
+lifetime = 0.8
+explosiveness = 0.95
+process_material = SubResource( 3 )
+texture = ExtResource( 3 )
+
+[node name="explosion2" type="Particles2D" parent="."]
+emitting = false
+lifetime = 0.8
+explosiveness = 0.87
+process_material = SubResource( 3 )
+texture = ExtResource( 3 )
+[connection signal="area_entered" from="." to="." method="_on_bomb_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_bomb_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_bomb_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_bomb_body_exited"]

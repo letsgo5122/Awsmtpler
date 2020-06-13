@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/GUI/energy_bar_bg.png" type="Texture" id=2]
+[ext_resource path="res://assets/GUI/energy_bar_fill.png" type="Texture" id=3]
+
+[node name="HB" type="HBoxContainer"]
+margin_right = 355.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gauge" type="TextureProgress" parent="."]
+margin_right = 60.0
+margin_bottom = 40.0
+value = 10.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
+nine_patch_stretch = true
+stretch_margin_left = 60

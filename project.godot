@@ -1,0 +1,67 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
+[application]
+
+config/name="Awsmtpler"
+run/main_scene="res://lobby.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+gamestate="*res://gamestate.gd"
+
+[display]
+
+window/size/width=800
+window/size/test_width=600
+window/size/test_height=600
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
+
+[input]
+
+set_bomb={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":66,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_attack={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="PlayerHurtBox"
+2d_physics/layer_4="EnemyHurtBox"
+2d_physics/layer_5="Enemy"
+2d_physics/layer_6="Items"
+
+[locale]
+
+translations=PoolStringArray(  )
+locale_filter=[ 0, [ "zh", "zh_TW" ] ]
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

@@ -1,0 +1,159 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://gui/LifeBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://gui/EnergyBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gui/EmeraldCounter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gui/BombCounter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/pad.png" type="Texture" id=7]
+[ext_resource path="res://gui/BombBt.gd" type="Script" id=8]
+[ext_resource path="res://gui/AttBt.gd" type="Script" id=9]
+[ext_resource path="res://gui/SendChat.gd" type="Script" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 6 )
+
+[node name="GUI" type="MarginContainer"]
+anchor_right = 1.0
+margin_left = 3.0
+margin_top = 12.0
+margin_right = 7.0
+margin_bottom = 71.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 804.0
+margin_bottom = 59.0
+
+[node name="Bars" type="VBoxContainer" parent="HBoxContainer"]
+margin_right = 500.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+
+[node name="LifeBar" parent="HBoxContainer/Bars" instance=ExtResource( 1 )]
+margin_right = 500.0
+
+[node name="EnergyBar" parent="HBoxContainer/Bars" instance=ExtResource( 2 )]
+visible = false
+margin_left = 0.0
+margin_top = 57.0
+margin_right = 1315.0
+margin_bottom = 97.0
+
+[node name="nameLabel" type="Label" parent="HBoxContainer"]
+margin_left = 504.0
+margin_right = 700.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 1 )
+text = "name                  
+"
+
+[node name="Counters" type="HBoxContainer" parent="HBoxContainer"]
+margin_left = 704.0
+margin_top = 9.0
+margin_right = 804.0
+margin_bottom = 49.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="BombCounter" parent="HBoxContainer/Counters" instance=ExtResource( 4 )]
+margin_bottom = 40.0
+
+[node name="EmeraldCounter" parent="HBoxContainer/Counters" instance=ExtResource( 3 )]
+visible = false
+margin_left = 104.0
+margin_right = 204.0
+margin_bottom = 40.0
+
+[node name="Chat" type="Sprite" parent="."]
+visible = false
+position = Vector2( 181.699, 463.332 )
+scale = Vector2( 0.788406, 0.829797 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Chat"]
+margin_left = 32.0
+margin_top = -65.0
+margin_right = 345.0
+margin_bottom = 29.0
+text = "Hello
+"
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="Chat"]
+margin_left = 32.0
+margin_top = 29.0
+margin_right = 345.0
+margin_bottom = 59.0
+shortcut_keys_enabled = false
+selecting_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SendChat" type="Button" parent="Chat"]
+margin_left = 357.0
+margin_top = 29.0
+margin_right = 409.0
+margin_bottom = 59.0
+text = "Send"
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AttBt" type="TouchScreenButton" parent="."]
+visible = false
+self_modulate = Color( 0.929412, 0.666667, 0.0627451, 0.498039 )
+position = Vector2( 602.854, 357.996 )
+normal = ExtResource( 7 )
+script = ExtResource( 9 )
+
+[node name="Label" type="Label" parent="AttBt"]
+margin_left = 7.0
+margin_top = 22.0
+margin_right = 57.0
+margin_bottom = 63.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.247059, 0.556863, 1, 1 )
+text = "Attact
+"
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="BombBt" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2( 552.867, 430.889 )
+normal = ExtResource( 7 )
+script = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="BombBt"]
+margin_left = 8.0
+margin_top = 21.0
+margin_right = 57.0
+margin_bottom = 62.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.247059, 0.556863, 1, 1 )
+text = "Bomb
+"
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="AttBt" to="AttBt" method="_on_AttBt_pressed"]
+[connection signal="released" from="AttBt" to="AttBt" method="_on_AttBt_released"]
+[connection signal="pressed" from="BombBt" to="BombBt" method="_on_BombBt_pressed"]
+[connection signal="released" from="BombBt" to="BombBt" method="_on_BombBt_released"]
